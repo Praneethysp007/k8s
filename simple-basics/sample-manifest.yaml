@@ -2,8 +2,8 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  name: mypod
   labels:
-    name: mypod
     bhavna: project
 spec:
   containers:
