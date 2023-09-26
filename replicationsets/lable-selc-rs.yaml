@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       labels:
-      app: nignix
+        app: nignix
     spec:
       containers:
         - image: nginx:1.25
