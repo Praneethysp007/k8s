@@ -1,3 +1,14 @@
 ---
-apiVersion: 
-kind:
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: mypod
+    bhavna: project
+spec:
+  containers:
+    - name: mycontainer
+      image: nginx
+      ports:
+        - hostPort: 8080
+          protocol: TCP
