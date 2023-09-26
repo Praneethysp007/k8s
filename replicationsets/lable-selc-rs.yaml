@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    app: nginx-rs
+  name: repicca  
+spec:
+  minReadySeconds: 5
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nignix
+  template:
+    metadata:
+      labels:
+      app: nignix
+    spec:
+      containers:
+        - image: nginx:1.25
+          ports:
+          - containerPort: 80
+            hostPort: 8080
+            protocol: TCP
+          
+    
+  
+
