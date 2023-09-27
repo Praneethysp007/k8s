@@ -17,10 +17,10 @@ spec:
     - name: my-container
       resources:
         requests:
-          memory: "64mi"
+          memory: "64Mi"
           cpu: "250m"
         limits:
-          memory: "128mi"
+          memory: "128Mi"
           cpu: "500m"
       image: nginx:1.25
       ports:
