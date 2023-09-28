@@ -20,8 +20,9 @@ spec:
         - image: nginx:1.25
           name: ngix-pod
           ports:
-          - containerPort: 80
-            protocol: TCP
+            - containerPort: 80
+              protocol: TCP
+
           
     
   
