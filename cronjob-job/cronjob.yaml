@@ -14,9 +14,6 @@ spec:
         app: newlable
     spec:
       backoffLimit: 3
-      selector:
-        matchLabels:
-          app: podnes
       template:
         metadata:
           name: mypod
