@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config-map
+data:
+  qtdevops: learning
+
+---
+apiVersion: v1
+kind: Secret 
+metadata: 
+  name: my-secret
+data:
+  password: "cXRAMTIzNDU="
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: mypod
+  labels:
+    app: test
+spec:
+  containers:
+    - name: my-container
+      image: nginx:1.25
+      ports: 
+        - containerPort: 80
+          hostPort: 8080
+          protocol: TCP
+      envFrom:  
+        - configMapRef:
+            name: my-config-map
+          secretRef:
+            name: my-secret
+               
+          
+
+
+
+ 
+
+  
