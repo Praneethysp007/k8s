@@ -12,7 +12,7 @@ kind: Secret
 metadata: 
   name: my-secret
 data:
-  password: "cXRAMTIzNDU="
+  password: cXRAMTIzNDU=
 ---
 apiVersion: v1
 kind: Pod
@@ -31,7 +31,7 @@ spec:
       envFrom:  
         - configMapRef:
             name: my-config-map
-          secretRef:
+        - secretRef:
             name: my-secret
                
           
