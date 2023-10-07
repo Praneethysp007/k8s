@@ -1,0 +1,15 @@
+---
+apiVersion: v1 
+kind: Service
+metadata:
+  name: myservice
+  labels:
+    purpose: learning
+spec:
+  selector:
+    app: nignix
+  type: NodePort  
+  ports:
+    - nodePort: 30094
+      targetPort: 80
+      port: 80

@@ -4,7 +4,7 @@ kind: Pod
 metadata:
   name: mypod
   labels:
-    bhavna: project
+    app: nignix
 spec:
   containers:
     - name: mycontainer
@@ -13,3 +13,31 @@ spec:
         - containerPort: 80
           hostPort: 8080
           protocol: TCP
+
+
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('Create Zip File') {
+            steps {
+                script {
+                    // Define the name/path of the zip file
+                    def zipFile = 'my_archive.zip'
+                    
+                    // Use the zip step to create the zip file
+                    zip(zipFile: zipFile, archive: true) {
+                        // Include the files or directories you want to zip
+                        dir('path/to/content') {
+                            // You can use include/exclude directives as needed
+                            include '**/*.txt' // Include all .txt files
+                            include 'folder/**' // Include all files and subdirectories in 'folder'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
