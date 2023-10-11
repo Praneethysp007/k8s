@@ -1,0 +1,61 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rabbbitmquser
+data:
+  default_user: rabbitmquser
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rabbbitmqpass
+data:
+  default_pass: DEBmbwkSrzy9D1T9cJfa 
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  labels:
+    app: rabbitmq
+spec:
+  containers:
+    - name: mycontainer
+      image: rabbitmq:3-management-alpine
+      ports:
+        - name: managment
+          containerPort: 15672
+          hostPort: 15672
+          protocol: TCP
+        - name: msg
+          containerPort: 5672
+          hostPort: 5672
+          protocol: TCP  
+      env:
+        - name: RABBITMQ_CONFIG_FILE
+          value: '/etc/pitstop/rabbitmq.conf'
+      envFrom:
+            - configMapRef:
+                name: rabbbitmquser
+            - secretRef:
+                name: rabbbitmqpass
+
+---                 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: auditlog
+  labels:
+    app: auditlog
+spec:
+      containers:
+        - name: auditlogservicecon
+          image: pitstop/auditlogservice:1.0
+          env:
+            - name: DOTNET_ENVIRONMENT
+              value: Production                         
+                    
+
